@@ -26,6 +26,7 @@ const cartSlice = createSlice({
           name: newItem.name
         });  
       }
+      state.totalQuantity++;
     }
   }
 });
