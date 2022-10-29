@@ -27,6 +27,10 @@ const cartSlice = createSlice({
         });  
       }
       state.totalQuantity++;
+    },
+
+    setShowCart(state) {
+      state.showCart = !state.showCart;
     }
   }
 });
