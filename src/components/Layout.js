@@ -5,8 +5,13 @@ import "./Layout.css";
 import { useSelector } from "react-redux";
 import CartItems from "./CartItems";
 const Layout = () => {
-  let total = 100;
+  let total = 0;
   const showCart = useSelector((state) => state.cart.showCart);
+  const itemsList = useSelector(state => state.cart.itemsList);
+
+  for (const item of itemsList) {
+    total += item.totalPrice;
+  }
 
   return (
     <React.Fragment>
