@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    itemList: [],
+    itemsList: [],
     totalQuantity: 0,
     showCart: false
   },
@@ -12,13 +12,13 @@ const cartSlice = createSlice({
       const newItem = action.payload;
 
       //First we will check if this item is alredy existing, the we will add information accordingly
-      const existingItem = state.itemList.find((item) => item.id === newItem.id);
+      const existingItem = state.itemsList.find((item) => item.id === newItem.id);
 
       if (existingItem) {
         existingItem.quantity++;
         existingItem.totalPrice += newItem.price;
       } else {
-        state.itemList.push({
+        state.itemsList.push({
           id: newItem.id,
           price: newItem.price,
           quantity: 1,
@@ -27,6 +27,20 @@ const cartSlice = createSlice({
         });  
       }
       state.totalQuantity++;
+    },
+
+    removeFromCart(state, action) {
+      const id = action.payload;
+
+      const existingItem = state.itemsList.find(item => item.id === id);
+
+      if (existingItem.quantity === 1) {
+        state.itemsList = state.itemsList.filter(item => item.id !== id);
+      } else {
+        existingItem.quantity--;
+        existingItem.totalPrice -= existingItem.price;
+      }
+      state.totalQuantity--;
     },
 
     setShowCart(state) {
