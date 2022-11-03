@@ -1,3 +1,4 @@
+import { async } from 'q';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './App.css';
@@ -9,10 +10,16 @@ function App() {
   const cart = useSelector(state => state.cart);
   
   useEffect(() => {
-    fetch("https://redux-shopping-cart-3d386-default-rtdb.firebaseio.com/cartItems.json", {
-      method: "PUT",
-      body: JSON.stringify(cart)
-    })
+    const sendRequest = async () => {
+      const res = await fetch(
+        "https://redux-shopping-cart-3d386-default-rtdb.firebaseio.com/cartItems.json", {
+        method: "PUT",
+        body: JSON.stringify(cart)
+      });
+      const data = await res.json();
+      console.log("Send Request respone: ", data);
+    };
+    sendRequest();
   }, [cart]);
 
   return (
