@@ -4,7 +4,7 @@ import './App.css';
 import Auth from "./components/Auth";
 import Layout from "./components/Layout";
 import Notification from './components/Notification';
-import { sendCartData } from './store/cart-slice';
+import { sendCartData } from './store/cart-actions';
 let isFirstRender = true;
 
 function App() {
