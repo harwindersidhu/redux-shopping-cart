@@ -4,7 +4,7 @@ import './App.css';
 import Auth from "./components/Auth";
 import Layout from "./components/Layout";
 import Notification from './components/Notification';
-import { sendCartData } from './store/cart-actions';
+import { fetchData, sendCartData } from './store/cart-actions';
 let isFirstRender = true;
 
 function App() {
@@ -14,13 +14,18 @@ function App() {
   const cart = useSelector(state => state.cart);
 
   useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (isFirstRender) {
       isFirstRender = false;
       return;
     }
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
     
-    
-    dispatch(sendCartData(cart));
   }, [cart, dispatch]);
 
   return (

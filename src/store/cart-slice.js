@@ -5,10 +5,18 @@ const cartSlice = createSlice({
   initialState: {
     itemsList: [],
     totalQuantity: 0,
-    showCart: false
+    showCart: false,
+    changed: false
   },
   reducers: {
+    replaceData(state, action) {
+      //This function is used to replace the data with saved data we get from firebase after fetchData request
+      state.totalQuantity = action.payload.totalQuantity;
+      if (action.payload.itemsList) state.itemsList = action.payload.itemsList;
+    },
+
     addToCart(state, action) {
+      state.changed = true;
       const newItem = action.payload;
 
       //First we will check if this item is alredy existing, the we will add information accordingly
@@ -30,6 +38,7 @@ const cartSlice = createSlice({
     },
 
     removeFromCart(state, action) {
+      state.changed = true;
       const id = action.payload;
 
       const existingItem = state.itemsList.find(item => item.id === id);
