@@ -35,8 +35,8 @@ You may also see any lint errors in the console.
 ## Screenshots
 
 - We can add items to cart by clicking `Add to cart` button.
-  - !["shopping-cart"](./docs/Home.png)
+   !["shopping-cart"](./docs/Home.png)
 
 - From a cart, we can add or remove item.
-  - !["shopping-cart"](./docs/Cart.png)
+   !["shopping-cart"](./docs/Cart.png)
 
