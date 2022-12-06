@@ -32,3 +32,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+## Screenshots
+
+- We can add items to cart by clicking `Add to cart` button.
+  - !["shopping-cart"](./docs/Home.png)
+
+- From a cart, we can add or remove item.
+  - !["shopping-cart"](./docs/Cart.png)
+
